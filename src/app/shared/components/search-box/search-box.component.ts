@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 import { CitiesService } from '@/app/services/cities/cities.service';
 import { FlightSearchParams } from '@/app/models/flight-search-params';
-
+import { FlightSearchService } from '@/app/services/flight-search/flight-search.service';
 @Component({
   selector: 'flb-search-box',
   templateUrl: './search-box.component.html',
@@ -20,7 +20,8 @@ export class SearchBoxComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private citiesService: CitiesService
+    private citiesService: CitiesService,
+    private flightSearchService: FlightSearchService
   ) {}
 
   private returnDateValidator = (control: FormControl) => {
@@ -55,12 +56,14 @@ export class SearchBoxComponent implements OnInit {
         flightMode: this.selectedFlightModeValue,
         origin: this.origin.value,
         destination: this.destination.value,
-        departureDate: this.departureDate.value,
-        returnDate: this.returnDate.value,
+        departureDate: `${this.departureDate.value.year}/${this.departureDate.value.month}/${this.departureDate.value.day}`,
+        returnDate: this.returnDate.value ? `${this.returnDate.value.year}/${this.returnDate.value.month}/${this.returnDate.value.day}` : '',
         passengerCount: this.passengerCount.value
       }
 
-      console.log(searchParams);
+      // console.log(searchParams);
+      this.flightSearchService.searchFlights(searchParams);
+
     }
   }
 
