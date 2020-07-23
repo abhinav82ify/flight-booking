@@ -1,0 +1,147 @@
+<form [formGroup]="searchForm" class="pt-4">
+  <div
+    class="btn-group btn-group-toggle mb-3"
+    ngbRadioGroup
+    name="radioBasic"
+    formControlName="flightMode"
+  >
+    <label
+      ngbButtonLabel
+      class="btn"
+      [ngClass]="{ 'btn-primary': selectedFlightModeValue === '1' }"
+    >
+      <input ngbButton type="radio" value="1" /> One Way
+    </label>
+    <label
+      ngbButtonLabel
+      class="btn"
+      [ngClass]="{ 'btn-primary': selectedFlightModeValue === '2' }"
+    >
+      <input ngbButton type="radio" value="2" /> Return
+    </label>
+  </div>
+
+  <div class="mb-3">
+    <div class="input-group">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Enter Origin City"
+        aria-label="Enter Origin City"
+        aria-describedby="basic-addon1"
+        formControlName="origin"
+        [ngbTypeahead]="search"
+      />
+    </div>
+    <div *ngIf="origin.invalid && (origin.dirty || origin.touched)">
+      <div *ngIf="origin.errors.required" class="flb-u-error-msg">
+        Enter a city of origin
+      </div>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <div class="input-group">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Enter Destination City"
+        aria-label="Enter Destination City"
+        aria-describedby="basic-addon1"
+        formControlName="destination"
+        [ngbTypeahead]="search"
+      />
+    </div>
+    <div
+      *ngIf="destination.invalid && (destination.dirty || destination.touched)"
+    >
+      <div *ngIf="destination.errors.required" class="flb-u-error-msg">
+        Enter a destination city
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="input-group">
+      <input
+        class="form-control"
+        placeholder="Departure Date"
+        name="departure"
+        formControlName="departureDate"
+        ngbDatepicker
+        #dep="ngbDatepicker"
+      />
+      <div class="input-group-append">
+        <button
+          class="btn btn-outline-secondary calendar"
+          (click)="dep.toggle()"
+          type="button"
+        ></button>
+      </div>
+    </div>
+    <div
+      *ngIf="
+        departureDate.invalid && (departureDate.dirty || departureDate.touched)
+      "
+    >
+      <div *ngIf="departureDate.errors.required" class="flb-u-error-msg">
+        Select a departure date
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group" [hidden]="selectedFlightModeValue === '1'">
+    <div class="input-group">
+      <input
+        class="form-control"
+        placeholder="Return Date"
+        name="dp"
+        formControlName="returnDate"
+        ngbDatepicker
+        #ret="ngbDatepicker"
+      />
+      <div class="input-group-append">
+        <button
+          class="btn btn-outline-secondary calendar"
+          (click)="ret.toggle()"
+          type="button"
+        ></button>
+      </div>
+    </div>
+
+    <div *ngIf="returnDate.invalid && (returnDate.dirty || returnDate.touched)">
+      <div *ngIf="returnDate.errors.required" class="flb-u-error-msg">
+        Select a return date
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <select
+      class="form-control"
+      id="exampleFormControlSelect1"
+      formControlName="passengerCount"
+    >
+      <option [value]="null">Select Passengers</option>
+      <option [value]="1">1</option>
+      <option [value]="2">2</option>
+      <option [value]="3">3</option>
+      <option [value]="4">4</option>
+    </select>
+
+    <div
+      *ngIf="
+        passengerCount.invalid &&
+        (passengerCount.dirty || passengerCount.touched)
+      "
+    >
+      <div *ngIf="passengerCount.errors.required" class="flb-u-error-msg">
+        Select number of passengers
+      </div>
+    </div>
+  </div>
+
+  <button type="submit" class="btn btn-primary" (click)="submit()">
+    Submit
+  </button>
+</form>

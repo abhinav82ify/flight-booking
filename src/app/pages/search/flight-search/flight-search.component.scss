@@ -8,6 +8,19 @@
   -moz-osx-font-smoothing: grayscale;
   display: flex;
   min-height: 100vh;
-  min-width: 100vw;
   width: 100%;
+}
+
+.content {
+  padding-top: 60px;
+  display: flex;
+  flex-grow: 1;
+
+  &__search-box {
+    border: 1px solid black;
+  }
+
+  &__result-box {
+    border: 1px solid black;
+  }
 }
