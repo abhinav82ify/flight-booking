@@ -12,13 +12,17 @@ export interface FlightSearchResponse {
   price: number;
 }
 
-export interface MultiFlightState {
-  flight1: FlightSearchResponse;
-  flight2: FlightSearchResponse;
-}
-
 export class FlightSearchResponse implements FlightSearchResponse {
-  constructor() {}
+  constructor() {
+    this.arrivalTime = '';
+    this.date = '';
+    this.departureTime = '';
+    this.destination = '';
+    this.flightNo = '';
+    this.name = '';
+    this.origin = '';
+    this.price = 100000;
+  }
 
   filter(params: FlightSearchParams, date: string): boolean {
     const inputDepartureDate = convertDateStringToDate(date);
@@ -28,5 +32,17 @@ export class FlightSearchResponse implements FlightSearchResponse {
       this.destination === params.destination &&
       thisDepartureDate === inputDepartureDate
     );
+  }
+}
+
+export interface MultiFlightState {
+  flight1: FlightSearchResponse;
+  flight2: FlightSearchResponse;
+}
+
+export class MultiFlightState implements MultiFlightState {
+  constructor() {
+    this.flight1 = new FlightSearchResponse();
+    this.flight2 = new FlightSearchResponse();
   }
 }

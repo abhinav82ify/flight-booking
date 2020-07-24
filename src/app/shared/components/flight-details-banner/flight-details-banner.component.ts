@@ -9,7 +9,7 @@ import { dateAndTimeToDateObject, calculateDuration } from '@/app/helpers/utilit
   styleUrls: ['./flight-details-banner.component.scss']
 })
 export class FlightDetailsBannerComponent implements OnInit {
-  @Input() flightDetails: FlightSearchResponse;
+  @Input() flightDetails: FlightSearchResponse = new FlightSearchResponse();
   @Input() passengerCount: number;
   
   constructor() { }

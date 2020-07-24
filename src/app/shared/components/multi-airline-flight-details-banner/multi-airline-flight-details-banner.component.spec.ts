@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MultiAirlineFlightDetailsBannerComponent } from './multi-airline-flight-details-banner.component';
+import { SharedModule } from '@/app/shared/shared.module';
 
 describe('MultiAirlineFlightDetailsBannerComponent', () => {
   let component: MultiAirlineFlightDetailsBannerComponent;
@@ -8,9 +9,9 @@ describe('MultiAirlineFlightDetailsBannerComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MultiAirlineFlightDetailsBannerComponent ]
-    })
-    .compileComponents();
+      declarations: [MultiAirlineFlightDetailsBannerComponent],
+      imports: [SharedModule],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

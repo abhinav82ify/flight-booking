@@ -8,7 +8,7 @@ import { dateAndTimeToDateObject, calculateDuration } from '@/app/helpers/utilit
   styleUrls: ['./multi-airline-flight-details-banner.component.scss']
 })
 export class MultiAirlineFlightDetailsBannerComponent implements OnInit {
-  @Input() multiAirlineFlights: MultiFlightState;
+  @Input() multiAirlineFlights: MultiFlightState = new MultiFlightState();
   @Input() passengerCount: number;
 
   flight1: FlightSearchResponse;
@@ -37,7 +37,6 @@ export class MultiAirlineFlightDetailsBannerComponent implements OnInit {
     const flight1ArrivalTime = dateAndTimeToDateObject(this.flight1.date, this.flight1.arrivalTime);
     const flight2DepartureTime = dateAndTimeToDateObject(this.flight2.date, this.flight2.departureTime);
     const flight2ArrivalTime = dateAndTimeToDateObject(this.flight2.date, this.flight2.arrivalTime);
-
     
     this.totalDuration = calculateDuration(flight2ArrivalTime, flight1DepartureTime);
     this.duration1 = calculateDuration(flight1ArrivalTime, flight1DepartureTime);

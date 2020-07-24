@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { FlightDetailsBannerComponent } from './flight-details-banner.component';
+import { SharedModule } from '@/app/shared/shared.module';
 
 describe('FlightDetailsBannerComponent', () => {
   let component: FlightDetailsBannerComponent;
@@ -8,9 +9,9 @@ describe('FlightDetailsBannerComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FlightDetailsBannerComponent ]
-    })
-    .compileComponents();
+      declarations: [FlightDetailsBannerComponent],
+      imports: [SharedModule],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
