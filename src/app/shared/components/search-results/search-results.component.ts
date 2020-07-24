@@ -1,29 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
-import { UnsubscribeOnDestroyAdapter } from '@/app/helpers/unsubscribe-on-destroy-adapter';
-import { FlightSearchService } from '@/app/services/flight-search/flight-search.service';
+import { FlightSearchResponse, MultiFlightState } from '@/app/models/flight-search-response';
 
 @Component({
   selector: 'flb-search-results',
   templateUrl: './search-results.component.html',
   styleUrls: ['./search-results.component.scss']
 })
-export class SearchResultsComponent extends UnsubscribeOnDestroyAdapter implements OnInit {
+export class SearchResultsComponent implements OnInit {
+  @Input() origin: string;
+  @Input() destination: string;
+  @Input() directFlights: FlightSearchResponse[] = [];
+  @Input() multiAirlineFlights: MultiFlightState[] = [];
+  @Input() date: Date;
+  @Input() passengerCount: number;
 
-  constructor(private flightSearchService: FlightSearchService) {
-    super();
+  constructor() {
   }
 
-  private subscribeToFlightResultState() {
-    this.subsink.push(
-      this.flightSearchService.flightSearchResults$.subscribe(state => {
-        console.log(state);
-      })
-    );
-  }
+  ngOnInit() {
 
-  ngOnInit(): void {
-    this.subscribeToFlightResultState();
   }
 
 }

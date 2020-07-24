@@ -1,1 +1,17 @@
-<p>search-results works!</p>
+<div class="card">
+  <div class="card-body">
+    <h3>{{ origin }} to {{ destination }}</h3>
+    <small>{{ (directFlights.length + multiAirlineFlights.length) }} flight(s) found {{ date | date }}</small>
+  </div>
+</div>
+
+<flb-flight-details-banner
+  *ngFor="let flight of directFlights"
+  [flightDetails]="flight"
+  [passengerCount]="passengerCount"
+></flb-flight-details-banner>
+<flb-multi-airline-flight-details-banner
+  *ngFor="let flight of multiAirlineFlights"
+  [multiAirlineFlights]="flight"
+  [passengerCount]="passengerCount"
+></flb-multi-airline-flight-details-banner>

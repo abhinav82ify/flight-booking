@@ -12,8 +12,9 @@ export interface FlightResultState {
   oneWayMultipleFlights: MultiFlightState[];
   returnDirectFlights: FlightSearchResponse[];
   returnMultipleFlights: MultiFlightState[];
-  flightMode: string;
+  // flightMode: string;
   isDataLoading: boolean;
+  searchParams: FlightSearchParams;
 };
 
 const initialState: FlightResultState = {
@@ -21,8 +22,9 @@ const initialState: FlightResultState = {
   oneWayMultipleFlights: [],
   returnDirectFlights: [],
   returnMultipleFlights: [],
-  flightMode: '1',
-  isDataLoading: false
+  // flightMode: '1',
+  isDataLoading: false,
+  searchParams: undefined
 }
 
 @Injectable({
@@ -41,7 +43,7 @@ export class FlightSearchService {
   async searchFlights(params: FlightSearchParams) {
     let oneWayResponse =  { direct:[], multi: [] };
     let twoWayResponse = { direct:[], multi: [] };
-    this.streamData(oneWayResponse, twoWayResponse, params.flightMode, true);
+    this.streamData(oneWayResponse, twoWayResponse, params, true);
 
     this.allFlights = await this._http.get<FlightSearchResponse[]>(this.flightSearchUrl).toPromise();
     
@@ -50,17 +52,18 @@ export class FlightSearchService {
       twoWayResponse = this.filterFlights(params.destination, params.origin, params.returnDate);
     }
 
-    this.streamData(oneWayResponse, twoWayResponse, params.flightMode, false);
+    this.streamData(oneWayResponse, twoWayResponse, params, false);
   }
 
-  private streamData(oneWayResponse, twoWayResponse, flightMode, isDataLoading) {
+  private streamData(oneWayResponse, twoWayResponse, params, isDataLoading) {
     this.flightSearchResults.next({
       oneWayDirectFlights: oneWayResponse.direct,
       oneWayMultipleFlights: oneWayResponse.multi,
       returnDirectFlights: twoWayResponse.direct,
       returnMultipleFlights: twoWayResponse.multi,
-      flightMode,
-      isDataLoading
+      // flightMode,
+      isDataLoading,
+      searchParams: params
     });
   }
 

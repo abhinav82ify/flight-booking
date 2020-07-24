@@ -1,0 +1,117 @@
+<div class="card mb-3">
+  <div class="card-body">
+    <div class="container-fluid">
+      <div class="row">
+        <h1 class="col align-self-center">X</h1>
+        <div class="col align-self-center">
+          <strong>Multiple</strong>
+          <button
+            type="button"
+            class="btn btn-link p-0"
+            (click)="toggleDetails()"
+          >
+            <small *ngIf="!isDetailsOpen">Show details</small>
+            <small *ngIf="isDetailsOpen">Hide details</small>
+          </button>
+        </div>
+        <div class="col align-self-center">
+          <div>
+            <strong>{{ departureTime }}</strong>
+          </div>
+          <small>{{ flight1.origin }}</small>
+        </div>
+        <div class="col align-self-center">
+          <div>
+            <strong>{{ arrivalTime }}</strong>
+          </div>
+          <small>{{ flight2.destination }}</small>
+        </div>
+        <div class="col align-self-center">
+          <div>
+            <strong>{{ totalDuration }}</strong>
+          </div>
+          <small>Total Duration</small>
+        </div>
+        <div class="col align-self-center">
+          <p class="text-danger mb-0">
+            {{ totalFare | currency: "INR" }}
+          </p>
+          <small>For {{ passengerCount }} passenger(s)</small>
+        </div>
+        <div class="col align-self-center">
+          <button type="button" class="btn btn-danger">Book</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid bg-light" [hidden]="!isDetailsOpen">
+      <!-- flight 1 details -->
+      <div class="row">
+        <h1 class="col align-self-center">X</h1>
+        <div class="col align-self-center">
+          <div>
+            <strong>{{ flight1.name }}</strong>
+          </div>
+          <small>{{ flight1.flightNo }}</small>
+        </div>
+        <div class="col align-self-center">
+          <div>
+            <strong>{{ flight1.departureTime }}</strong>
+          </div>
+          <small>{{ flight1.origin }}</small>
+        </div>
+        <div class="col align-self-center">
+          <div>
+            <strong>{{ flight1.arrivalTime }}</strong>
+          </div>
+          <small>{{ flight1.destination }}</small>
+        </div>
+        <div class="col align-self-center">
+          <div>
+            <strong>{{ duration1 }}</strong>
+          </div>
+        </div>
+        <div class="col align-self-center"></div>
+        <div class="col align-self-center"></div>
+      </div>
+      <!-- flight 1 details end-->
+
+      <div class="row justify-content-center">
+        <span class="bg-white flb-u-dotted-border">
+          Layover time {{ layoverTime }}</span
+        >
+      </div>
+
+      <!-- flight 2 details -->
+      <div class="row">
+        <h1 class="col align-self-center">X</h1>
+        <div class="col align-self-center">
+          <div>
+            <strong>{{ flight2.name }}</strong>
+          </div>
+          <small>{{ flight2.flightNo }}</small>
+        </div>
+        <div class="col align-self-center">
+          <div>
+            <strong>{{ flight2.departureTime }}</strong>
+          </div>
+          <small>{{ flight2.origin }}</small>
+        </div>
+        <div class="col align-self-center">
+          <div>
+            <strong>{{ flight2.arrivalTime }}</strong>
+          </div>
+          <small>{{ flight2.destination }}</small>
+        </div>
+        <div class="col align-self-center">
+          <div>
+            <strong>{{ duration2 }}</strong>
+          </div>
+        </div>
+        <div class="col align-self-center"></div>
+        <div class="col align-self-center"></div>
+      </div>
+      <!-- flight 2 details end-->
+    </div>
+  </div>
+</div>

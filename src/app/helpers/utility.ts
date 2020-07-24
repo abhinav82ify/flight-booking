@@ -25,3 +25,11 @@ export function differenceInMinutes(date1: Date, date2: Date): number {
     diff /= 60;
     return Math.abs(Math.round(diff));
 }
+
+export function calculateDuration(time1, time2) {
+    const diff = differenceInMinutes(time1, time2);
+    const hours = `${Math.floor(diff/60)}`.padStart(2);
+    const minutes = `${diff%60}`.padStart(2);
+
+    return `${hours}h ${minutes}m`;
+  }
