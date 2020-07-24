@@ -1,0 +1,45 @@
+<div class="container-fluid content">
+  <div class="row flex-grow-1">
+    <div class="col-3 content__search-box">
+      <flb-search-box></flb-search-box>
+    </div>
+    <div class="col-9 content__result-box pt-4">
+      <div *ngIf="!isFlightSearchDone">
+        <div class="alert alert-primary" role="alert">
+          Enter information to search flights
+        </div>
+      </div>
+      <div *ngIf="isFlightSearchDone && !hasResults && !isDataLoading">
+        <div class="alert alert-warning" role="alert">
+          No flights found between the cities on selected date
+        </div>
+      </div>
+      <div class="spinner-border text-primary" role="status" *ngIf="isDataLoading">
+        <span class="sr-only">Loading...</span>
+      </div>
+      <div class="row" *ngIf="isFlightSearchDone && hasResults">
+        <div class="col">
+          <flb-search-results
+            [origin]="origin"
+            [destination]="destination"
+            [date]="departureDate"
+            [directFlights]="oneWayDirectFlights"
+            [multiAirlineFlights]="oneWayMultiAirlineFlights"
+            [passengerCount]="passengerCount"
+          ></flb-search-results>
+        </div>
+
+        <div class="col" *ngIf="isReturnJourney">
+          <flb-search-results
+            [origin]="destination"
+            [destination]="origin"
+            [date]="returnDate"
+            [directFlights]="returnDirectFlights"
+            [multiAirlineFlights]="returnMultiAirlineFlights"
+            [passengerCount]="passengerCount"
+          ></flb-search-results>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,42 @@
+<div class="card mb-3">
+  <div class="card-body">
+    <div class="container-fluid">
+      <div class="row">
+        <h1 class="col align-self-center">X</h1>
+        <div class="col align-self-center">
+          <div>
+            <strong>{{ flightDetails.name }}</strong>
+          </div>
+          <small>{{ flightDetails.flightNo }}</small>
+        </div>
+        <div class="col align-self-center">
+          <div>
+            <strong>{{ flightDetails.departureTime }}</strong>
+          </div>
+          <small>{{ flightDetails.origin }}</small>
+        </div>
+        <div class="col align-self-center">
+          <div>
+            <strong>{{ flightDetails.arrivalTime }}</strong>
+          </div>
+          <small>{{ flightDetails.destination }}</small>
+        </div>
+        <div class="col align-self-center">
+          <div>
+            <strong>{{ duration }}</strong>
+          </div>
+          <small>Non stop</small>
+        </div>
+        <div class="col align-self-center">
+          <p class="text-danger mb-0">
+            {{ totalFare | currency: "INR" }}
+          </p>
+          <small>For {{ passengerCount }} passenger(s)</small>
+        </div>
+        <div class="col align-self-center">
+          <button type="button" class="btn btn-danger">Book</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
