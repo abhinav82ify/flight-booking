@@ -42,6 +42,7 @@ export class SearchBoxComponent implements OnInit {
         Validators.required,
         Validators.min(1),
       ]),
+      maxPrice: new FormControl(100000)
     });
   }
 
@@ -58,12 +59,11 @@ export class SearchBoxComponent implements OnInit {
         destination: this.destination.value,
         departureDate: `${this.departureDate.value.year}/${this.departureDate.value.month}/${this.departureDate.value.day}`,
         returnDate: this.returnDate.value ? `${this.returnDate.value.year}/${this.returnDate.value.month}/${this.returnDate.value.day}` : '',
-        passengerCount: this.passengerCount.value
+        passengerCount: this.passengerCount.value,
+        maxPrice: this.maxPrice.value
       }
 
-      // console.log(searchParams);
       this.flightSearchService.searchFlights(searchParams);
-
     }
   }
 
@@ -100,6 +100,10 @@ export class SearchBoxComponent implements OnInit {
 
   get passengerCount() {
     return this.searchFormControls.passengerCount;
+  }
+
+  get maxPrice() {
+    return this.searchFormControls.maxPrice;
   }
 
   get selectedFlightModeValue() {

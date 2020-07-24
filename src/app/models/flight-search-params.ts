@@ -4,5 +4,6 @@ export interface FlightSearchParams {
  destination: string;
  departureDate: string;
  returnDate: string;
- passengerCount: number;   
+ passengerCount: number;
+ maxPrice: number;   
 }

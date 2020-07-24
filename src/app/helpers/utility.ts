@@ -9,21 +9,23 @@ export function convertDateStringToDate(dateString: string): Date {
 }
 
 export function dateAndTimeToDateObject(dateString: string, timeString: string): Date {
+    let date = convertDateStringToDate(dateString);
+
     const timeArray = timeString.split(":");
     const hours = parseInt(timeArray[0]);
     const minutes = parseInt(timeArray[1]);
-
-    let date = new Date();
+    
     date.setHours(hours);
     date.setMinutes(minutes);
-
+    date.setSeconds(0);
+    
     return date;
 }
 
 export function differenceInMinutes(date1: Date, date2: Date): number {
     let diff = (date1.getTime() - date2.getTime())/1000;
     diff /= 60;
-    return Math.abs(Math.round(diff));
+    return Math.floor(diff);
 }
 
 export function calculateDuration(time1, time2) {

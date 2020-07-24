@@ -141,6 +141,18 @@
     </div>
   </div>
 
+  <div class="form-group">
+    <label for="formControlRange">Price range: 0 to {{ maxPrice.value }}</label>
+    <input
+      type="range"
+      class="form-control-range"
+      id="formControlRange"
+      formControlName="maxPrice"
+      min="0"
+      max="100000"
+    />
+  </div>
+
   <button type="submit" class="btn btn-primary" (click)="submit()">
     Submit
   </button>

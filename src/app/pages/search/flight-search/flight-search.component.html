@@ -14,14 +14,17 @@
           No flights found between the cities on selected date
         </div>
       </div>
+      <div class="spinner-border text-primary" role="status" *ngIf="isDataLoading">
+        <span class="sr-only">Loading...</span>
+      </div>
       <div class="row" *ngIf="isFlightSearchDone && hasResults">
         <div class="col">
           <flb-search-results
             [origin]="origin"
             [destination]="destination"
             [date]="departureDate"
-            [directFlights]="flightSearchState.oneWayDirectFlights"
-            [multiAirlineFlights]="flightSearchState.oneWayMultipleFlights"
+            [directFlights]="oneWayDirectFlights"
+            [multiAirlineFlights]="oneWayMultiAirlineFlights"
             [passengerCount]="passengerCount"
           ></flb-search-results>
         </div>
@@ -31,8 +34,8 @@
             [origin]="destination"
             [destination]="origin"
             [date]="returnDate"
-            [directFlights]="flightSearchState.returnDirectFlights"
-            [multiAirlineFlights]="flightSearchState.returnMultipleFlights"
+            [directFlights]="returnDirectFlights"
+            [multiAirlineFlights]="returnMultiAirlineFlights"
             [passengerCount]="passengerCount"
           ></flb-search-results>
         </div>
